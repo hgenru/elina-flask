@@ -1,11 +1,12 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 
 application = Flask("elina's server")  # pylint: disable=invalid-name
+application.debug = True
 
-@application.route("/")
+@application.route('/')
 def handle_index_page():
-    return "Hello World"
+    return render_template('index.html')
 
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 5000))
