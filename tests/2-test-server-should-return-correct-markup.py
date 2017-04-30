@@ -1,23 +1,13 @@
-from lxml import etree
 from nose.tools import ok_, eq_
 from app.server import application
+from tests.utils import parse_dom, get_element_by_xpath
 
 APP = application.test_client()
-
-def parse_dom(text):
-    parser = etree.HTMLParser()
-    return etree.fromstring(text, parser)
-
-def get_element_by_xpath(dom, xpath):
-    elements = dom.xpath(xpath)
-    try:
-        return elements[0]
-    except IndexError:
-        return None
 
 def get_form(response_data):
     dom = parse_dom(response_data)
     return get_element_by_xpath(dom, '//form')
+
 
 def test_server_should_return_form():
     response = APP.get('/')
