@@ -5,9 +5,6 @@ application = Flask('elinas_app')
 
 @application.route("/", methods=['GET','POST'])
 def input_data():
-	number_one = request.form.get('number_one')
-	number_two = request.form.get('number_two')
-	
 	return render_template('form.html')
 
 
